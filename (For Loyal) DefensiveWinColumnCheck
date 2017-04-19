@@ -1,0 +1,48 @@
+%% Defensive Win Column Check
+
+load('data')
+%%
+stop=0;
+a=1;
+sum=0;
+sumBlue=0;
+sumRed=0;
+
+for i=1:10 % i represents columns
+    exceed=0;
+    k=0;
+    while  ~exceed
+        for j=1+k:5+k % j represents rows
+            if blueArray(j,i)==1
+                sumBlue=sumBlue+1;
+            elseif redArray(j,i)==1
+                sumRed=sumRed+1;
+            end
+        end
+        
+        if sumRed == 4 && sumBlue == 0
+            
+            % Find the open spot
+            
+            
+            
+            % Place token at open spot
+            
+            
+        elseif sumBlue == 4 && sumRed == 0
+            
+
+        end
+        
+        
+        if k>=5
+            exceed=1;
+            k=0;
+        end
+            
+        sumRed=0;
+        sumBlue=0;
+        k=k+1;
+    end
+end
+
