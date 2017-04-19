@@ -17,7 +17,6 @@ diag2WinCol=0;
 
 %% 1-6
 sumRed=0;
-sumGreen=0;
 sumBlue=0;
 won=0;
 
@@ -28,27 +27,35 @@ for m=1:6
         for n=1:5
             i=6+n-m+k;
             j=n+k;
-            sumBlue=sumBlue+blueArray(i,j);
-            sumGreen=sumGreen+greenArray(i,j);
-            sumRed=sumRed+redArray(i,j);
+            
+            tagBox = ['R',num2str(j),'C',num2str(i)];
+            
+            if handles.tagBox ==1 && BackgroundColor == [0 0 1] % if blue
+                sumBlue=sumBlue+1;
+            else handles.tagBox ==1 && BackgroundColor == [1 0 0] % if red
+                sumRed==sumRed+1;
+            end
+
         end
         
-        if sumGreen > 4 || sumBlue > 4 || sumRed > 4
+            
+        if sumBlue > 4 || sumRed > 4
             diag1WinRow=i-4;
             diag1WinCol=j-4;
             won=1;
-            if greenArray(i,j)==1
-                winner='green'
-            elseif blueArray(i,j)==1
-                winner='blue'
-            elseif redArray(i,j)==1
-                winner='red'
+            
+            if sumBlue > 4
+                winner='blue';
+            else
+                winner='red';
             end
+        end
+
             disp(['The winner is ' winner])
+            
         end
         k=k+1;
         sum=0;
-        sumGreen=0;
         sumBlue=0;
         sumRed=0;
         if k==m
@@ -71,27 +78,30 @@ for m=7:11
         for n=1:5
             i=n+k-1;
             j=n+k+m-7;
-            sumGreen=sumGreen+greenArray(i,j);
-            sumBlue=sumBlue+blueArray(i,j);
-            sumRed=sumRed+redArray(i,j);
+
+        tagBox = ['R',num2str(j),'C',num2str(i)];
+            
+            if handles.tagBox ==1 && BackgroundColor == [0 0 1] % if blue
+                sumBlue=sumBlue+1;
+            else handles.tagBox ==1 && BackgroundColor == [1 0 0] % if red
+                sumRed==sumRed+1;
+            end
+
         end
         
-        if sumGreen > 4 || sumBlue > 4 || sumRed > 4
+        if sumBlue > 4 || sumRed > 4
             diag1WinRow=i-4;
             diag1WinCol=j-4;
             won=1;
-            if greenArray(i,j)==1
-                winner='green'
-            elseif blueArray(i,j)==1
-                winner='blue'
-            elseif redArray(i,j)==1
-                winner='red'
+            if sumBlue > 4
+                winner='blue';
+            else
+                winner='red';
             end
             disp(['The winner is ' winner])
         end
         k=k+1;
         sum=0;
-        sumGreen=0;
         sumBlue=0;
         sumRed=0;
         
@@ -118,7 +128,6 @@ end
 
 %% 12-17
 sumBlue=0;
-sumGreen=0;
 sumRed=0;
 
 for m=12:17
@@ -128,27 +137,30 @@ for m=12:17
         for n=1:5
             i=k+n-m+12;
             j=16-n-k;
-            sumBlue=sumBlue+blueArray(i,j);
-            sumGreen=sumGreen+greenArray(i,j);
-            sumRed=sumRed+redArray(i,j);
+            
+            tagBox = ['R',num2str(j),'C',num2str(i)];
+            
+            if handles.tagBox ==1 && BackgroundColor == [0 0 1] % if blue
+                sumBlue=sumBlue+1;
+            else handles.tagBox ==1 && BackgroundColor == [1 0 0] % if red
+                sumRed==sumRed+1;
+            end
+            
         end
         
-        if sumGreen > 4 || sumBlue > 4 || sumRed > 4
+        if sumBlue > 4 || sumRed > 4
             diag2WinRow=i-4;
             diag2WinCol=j+4;
             won=1;
-            if greenArray(i,j)==1
-                winner='green'
-            elseif blueArray(i,j)==1
-                winner='blue'
-            elseif redArray(i,j)==1
-                winner='red'
+            if sumBlue > 4
+                winner='blue';
+            else
+                winner='red';
             end
             disp(['The winner is ' winner])
         end
         k=k+1;
         sum=0;
-        sumGreen=0;
         sumBlue=0;
         sumRed=0;
         
@@ -174,7 +186,6 @@ for m=12:17
 end
 
 %% 18-22
-sumGreen=0;
 sumBlue=0;
 sumRed=0;
 
@@ -185,28 +196,31 @@ for m=18:22
         for n=1:5
             i=n+k;
             j=28-m-k-n;
-            sumBlue=sumBlue+blueArray(i,j);
-            sumGreen=sumGreen+greenArray(i,j);
-            sumRed=sumRed+redArray(i,j);
+            
+            tagBox = ['R',num2str(j),'C',num2str(i)];
+            
+            if handles.tagBox ==1 && BackgroundColor == [0 0 1] % if blue
+                sumBlue=sumBlue+1;
+            else handles.tagBox ==1 && BackgroundColor == [1 0 0] % if red
+                sumRed==sumRed+1;
+            end
+            
         end
         
-        if sumGreen > 4 || sumBlue > 4 || sumRed > 4
+        if sumBlue > 4 || sumRed > 4
             diag2WinRow=i-4;
             diag2WinCol=j+4;
             won=1;
-            if greenArray(i,j)==1
-                winner='green'
-            elseif blueArray(i,j)==1
-                winner='blue'
-            elseif redArray(i,j)==1
-                winner='red'
+            if sumBlue > 4
+                winner='blue';
+            else
+                winner='red';
             end
             disp(['The winner is ' winner])
         end
         
         k=k+1;
         sum=0;
-        sumGreen=0;
         sumBlue=0;
         sumRed=0;
         
@@ -234,16 +248,10 @@ end
 if diag1WinRow ~= 0
     disp(['Winner is found at ' num2str(diag1WinRow) ',' num2str(diag1WinCol)...
         ' and is within diaganol 1-11'])
-elseif diag2WinRow ~0
+elseif diag2WinRow ~=0
     disp(['Winner is found at ' num2str(diag2WinRow) ',' num2str(diag2WinCol)....
         ' and is within diagnol 12-22'])
 end
     
-    
-    
-    
-    
-
-
 
 
